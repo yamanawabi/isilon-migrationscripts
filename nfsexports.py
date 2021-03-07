@@ -8,8 +8,6 @@
 # current features tracked are:  
 # clients, root clients, export description, read-only clients, read-write-clients
 
-# todo: read only mounts
-
 import json
 
 with open('depot_nfs_exports.json') as nfsexports:
