@@ -17,7 +17,7 @@ with open('depot_smb_shares.json') as smbshares:
 for i in smb_share_data:
 
     
-    command = "isi smb shares create"
+    command = "isi smb shares create "
     path = str(i['path'])
     description = str(i['description'])
     sharename = str(i['name'])
