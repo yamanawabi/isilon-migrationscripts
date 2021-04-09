@@ -87,11 +87,31 @@ for i in nfs_export_data:
     else:
         description = " --description \""+ str(i['description']) + "\""
 
+    alldirs = ""
+    if (i['all_dirs'] == True):
+        alldirs = " --all-dirs true"
+    else:
+        alldirs = " --all-dirs false"
+
+    maproot = ""
+    if (i['map_root']['enabled'] == True):
+        maprootusergroup = i['map_root']['user']+":"+i['map_root']['primary_group']+","+i['map_root']['secondary_groups']
+        maproot = " --map-root-enabled true --map-root="+maprootusergroup
+    else:
+        maproot = " --map-root-enabled false"
+
+    mapnonroot = ""
+    if (i['map_non_root']['enabled'] == True):
+        mapnonrootusergroup = i['map_root']['user']+":"+i['map_root']['primary_group']+","+i['map_root']['secondary_groups']
+        mapnonroot = " --map-non-root-enabled true --map-non-root="+mapnonrootusergroup
+    else:
+        mapnonroot = " --map-non-root-enabled false"
+
     # put together the command per nfs export
     command = "isi nfs exports create "
     path = str(i['paths'][0])
     
     print(command + path + clients + rootclients + roclients + rwclients +
-            description + readonly + "\n")
+            description + readonly + alldirs + maproot + mapnonroot + "\n")
 
 
