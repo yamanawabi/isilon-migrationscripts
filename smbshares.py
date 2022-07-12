@@ -35,6 +35,9 @@ for i in smb_share_data:
     command += " --file-create-mode " + str(filecreatemode)
 
     print(command) 
+    
+    deleveryonecmd = "isi smb shares permission delete " + sharename + " --wellknown Everyone -f"
+    print(deleveryonecmd)
 
     for permissionitem in i['permissions']:
         permgrant = permissionitem['permission_type']
@@ -51,6 +54,4 @@ for i in smb_share_data:
         command = "isi smb shares permission create " + sharename + " --run-as-root --sid \"" + permsid + "\""
         print(command)
 
-    deleveryonecmd = "isi smb shares permission delete " + sharename + " --wellknown Everyone -f"
-    print(deleveryonecmd)
     print("\n")
